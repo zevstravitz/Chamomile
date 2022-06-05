@@ -39,22 +39,32 @@ export const handler = async (argv: argsT): Promise<void> => {
     console.log("Team not found");
     process.exit(1);
   }
-  const possibleStates = await issueTeam.states();
+  const teamStatuses = await issueTeam.states();
+  const teamLabels = await issueTeam.labels();
 
   const issueDetails = await prompts([
+    {
+      type: "text",
+      name: "title",
+      message: "Issue Title",
+    },
     {
       type: "select",
       name: "state",
       message: "Select issue state",
-      choices: possibleStates.nodes.map(({ name, id }) => ({
+      choices: teamStatuses.nodes.map(({ name, id }) => ({
         title: name,
         value: id,
       })),
     },
     {
-      type: "text",
-      name: "title",
-      message: "Issue Title",
+      type: "multiselect",
+      name: "labels",
+      message: "Select issue label",
+      choices: teamLabels.nodes.map(({ name, id }) => ({
+        title: name,
+        value: id,
+      })),
     },
   ]);
 
@@ -62,7 +72,9 @@ export const handler = async (argv: argsT): Promise<void> => {
     title: issueDetails.title,
     teamId: issueTeam.id,
     assigneeId: me.id,
+    labelIds: issueDetails.labels,
     stateId: issueDetails.state,
+    estimate: issueTeam.defaultIssueEstimate,
   });
 
   const issue = await issueCreate.issue;
@@ -71,7 +83,18 @@ export const handler = async (argv: argsT): Promise<void> => {
   }
   const { branchName, title, url } = issue;
 
-  execSync(`gt bc ${branchName} -m "${title}"`);
+  const createBranch = await prompts([
+    {
+      type: "confirm",
+      name: "createBranch",
+      message: "Create Branch?",
+      initial: true,
+    },
+  ]);
+
+  if (createBranch.createBranch) {
+    execSync(`gt bc ${branchName} -m "${title}"`);
+  }
 
   const openIssue = await prompts([
     {
