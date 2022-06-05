@@ -1,10 +1,10 @@
 import { Team } from "@linear/sdk";
 import { SKIP_ID } from "../../constants";
 
-const getTeamCycleOptions = async (
+const fetchTeamCycleOptions = async (
   issueTeam: Team,
-  withSkip: boolean = false
-) => {
+  withSkip: boolean
+): Promise<{ title: string; value: string }[]> => {
   const teamCycles = await issueTeam.cycles();
 
   const cycleOptions = teamCycles.nodes
@@ -22,10 +22,10 @@ const getTeamCycleOptions = async (
   return cycleOptions;
 };
 
-const getTeamProjectOptions = async (
+const fetchTeamProjectOptions = async (
   issueTeam: Team,
-  withSkip: boolean = false
-) => {
+  withSkip: boolean
+): Promise<{ title: string; value: string }[]> => {
   const teamProjects = await issueTeam.projects();
 
   const projectOptions = teamProjects.nodes.map(({ name, id }) => ({
@@ -41,4 +41,4 @@ const getTeamProjectOptions = async (
   return projectOptions;
 };
 
-export { getTeamCycleOptions, getTeamProjectOptions };
+export { fetchTeamCycleOptions, fetchTeamProjectOptions };
