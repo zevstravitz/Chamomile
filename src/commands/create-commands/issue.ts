@@ -20,7 +20,7 @@ export const description =
 
 type argsT = yargs.Arguments<yargs.InferredOptionTypes<typeof args>>;
 
-export const handler = async (argv: argsT): Promise<void> => {
+export const handler = async (_argv: argsT): Promise<void> => {
   const me = await linearClient.viewer;
   const organization = await me.organization;
   const teams = await organization.teams();
@@ -43,7 +43,7 @@ export const handler = async (argv: argsT): Promise<void> => {
 
   if (!issueTeam) {
     console.log("Team not found");
-    process.exit(1);
+    return process.exit(1);
   }
   const teamStatuses = await issueTeam.states();
   const teamLabels = await issueTeam.labels();
@@ -116,7 +116,7 @@ export const handler = async (argv: argsT): Promise<void> => {
 
   const issue = await issueCreate.issue;
   if (issue === undefined) {
-    process.exit(1);
+    return process.exit(1);
   }
   const { branchName, title, url } = issue;
 
@@ -145,5 +145,5 @@ export const handler = async (argv: argsT): Promise<void> => {
     open(url);
   }
 
-  process.exit(0);
+  return process.exit(0);
 };
