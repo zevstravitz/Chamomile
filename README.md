@@ -2,7 +2,7 @@
 
 ## What is Charcoal?
 
-Charcoal simplifies issue and git tracking on the command line.
+Charcoal simplifies issue and git tracking from the command line.
 
 As of now the focus is bridging workflows involving Graphite and Linear.
 
