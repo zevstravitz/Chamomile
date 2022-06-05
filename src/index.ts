@@ -6,5 +6,7 @@ yargs(process.argv.slice(2))
     ["Charcoal is an integrated CLI Tool for Graphite & Linear."].join("\n")
   )
   .strict()
-  .commandDir("commands")
+  .commandDir("commands", {
+    extensions: ["js", "ts"],
+  })
   .demandCommand().argv;
