@@ -1,14 +1,14 @@
 import { Argv } from "yargs";
 
-export const command = "create <command>";
-export const desc = "Create a new issue";
+export const command = "issue <command>";
+export const desc = "Work with linear issues";
 
 //  process.env.NODE_ENV === "development" ? ["js", "ts"] : ["js"],
 
-export const aliases = ["c"];
+export const aliases = ["i"];
 export const builder = function (yargs: Argv): Argv {
   return yargs
-    .commandDir("create-commands", {
+    .commandDir("issue-commands", {
       extensions: ["js", "ts"],
     })
     .strict()

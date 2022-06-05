@@ -6,7 +6,9 @@ preprocessCommand();
 yargs(process.argv.slice(2))
   .help()
   .usage(
-    ["Charcoal is an integrated CLI Tool for Graphite & Linear."].join("\n")
+    [
+      "🧘‍♀️ Charcoal simplifies issue and git tracking from the command line.",
+    ].join("\n")
   )
   .strict()
   .commandDir("commands", {

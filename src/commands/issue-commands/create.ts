@@ -11,8 +11,8 @@ import {
 
 const args = {} as const;
 
-export const command = "issue";
-export const aliases = ["i"];
+export const command = "create";
+export const aliases = ["c"];
 export const builder = args;
 export const canonical = "create issue";
 export const description =
