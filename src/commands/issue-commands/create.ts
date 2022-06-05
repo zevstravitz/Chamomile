@@ -88,6 +88,7 @@ export async function handler(_argv: argsT): Promise<void> {
   if (openIssue.open) {
     await open(url);
   }
+  console.log(`Linear Issue URL: ${url}`);
 
   return process.exit(0);
 }
