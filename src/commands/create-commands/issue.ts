@@ -2,7 +2,12 @@ import { execSync } from "child_process";
 import open from "open";
 import prompts from "prompts";
 import yargs from "yargs";
+import { SKIP_ID } from "../../lib/constants";
 import { linearClient } from "../../lib/linear";
+import {
+  getTeamCycleOptions,
+  getTeamProjectOptions,
+} from "../../lib/linear/utils/issues";
 
 const args = {} as const;
 
@@ -35,18 +40,32 @@ export const handler = async (argv: argsT): Promise<void> => {
   const issueTeam = teams.nodes.find(
     (team) => team.id === issueTeamSelection.teamId
   );
+
   if (!issueTeam) {
     console.log("Team not found");
     process.exit(1);
   }
   const teamStatuses = await issueTeam.states();
   const teamLabels = await issueTeam.labels();
+  const priorityValues = await linearClient.issuePriorityValues;
+
+  const teamCycleOptions = await getTeamCycleOptions(issueTeam, true);
+  const teamProjectOptions = await getTeamProjectOptions(issueTeam, true);
 
   const issueDetails = await prompts([
     {
       type: "text",
       name: "title",
       message: "Issue Title",
+    },
+    {
+      type: "select",
+      name: "priority",
+      message: "Select issue priority",
+      choices: priorityValues.map((priorityValue) => ({
+        title: priorityValue.label,
+        value: priorityValue.priority,
+      })),
     },
     {
       type: "select",
@@ -66,15 +85,33 @@ export const handler = async (argv: argsT): Promise<void> => {
         value: id,
       })),
     },
+    {
+      type: "select",
+      name: "cycle",
+      message: "Select issue cycle",
+      choices: teamCycleOptions,
+      initial: 0,
+    },
+    {
+      type: "select",
+      name: "project",
+      message: "Select issue project",
+      choices: teamProjectOptions,
+      initial: 0,
+    },
   ]);
 
   const issueCreate = await linearClient.issueCreate({
     title: issueDetails.title,
     teamId: issueTeam.id,
     assigneeId: me.id,
+    priority: issueDetails.priority,
     labelIds: issueDetails.labels,
     stateId: issueDetails.state,
     estimate: issueTeam.defaultIssueEstimate,
+    projectId:
+      issueDetails.project === SKIP_ID ? undefined : issueDetails.project,
+    cycleId: issueDetails.cycle === SKIP_ID ? undefined : issueDetails.cycle,
   });
 
   const issue = await issueCreate.issue;
