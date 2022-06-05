@@ -13,6 +13,6 @@ yargs(process.argv.slice(2))
   )
   .strict()
   .commandDir("commands", {
-    extensions: ["js", "ts"],
+    extensions: ["js"],
   })
   .demandCommand().argv;
