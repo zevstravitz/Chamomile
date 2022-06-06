@@ -15,7 +15,9 @@ To run Charcoal locally, you will want to first get a linear token from the line
 Then run:
 
 ```
-pnpm dev create issue
+pnpm install
+pnpm develop
+cl ci
 ```
 
 To test out issue creation.
