@@ -17,7 +17,7 @@ Then run:
 ```
 pnpm install
 pnpm develop
-cl ci
+cl ic
 ```
 
 To test out issue creation.
