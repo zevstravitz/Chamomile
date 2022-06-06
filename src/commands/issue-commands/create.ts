@@ -5,6 +5,7 @@ import yargs from "yargs";
 import { SKIP_ID } from "../../lib/constants";
 import { linearClient } from "../../lib/linear";
 import { promptIssueDetails } from "../../lib/linear/prompt/issue_details";
+import { logLinear } from "../../lib/utils/log";
 
 const args = {} as const;
 
@@ -88,7 +89,7 @@ export async function handler(_argv: argsT): Promise<void> {
   if (openIssue.open) {
     await open(url);
   }
-  console.log(`Linear Issue URL: ${url}`);
+  logLinear(`Linear Issue URL: ${url}`);
 
   return process.exit(0);
 }

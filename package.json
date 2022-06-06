@@ -5,13 +5,13 @@
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
-    "build": "babel src --out-dir dist/src --extensions .ts",
+    "build": "rm -rf dist/ && babel src --out-dir dist/src --extensions .ts",
     "lint": "eslint src --quiet --ext .ts --cache",
     "check": "tsc --noEmit",
     "cli": "node ./dist/src/index.js",
     "start": "pnpm build && pnpm cli",
     "dev": "ts-node src/index.ts",
-    "@deprecated/build": "rm -rf dist/ && tsc",
+    "deprecated-build": "rm -rf dist/ && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -19,7 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@linear/sdk": "^1.22.0",
-    "chalk": "^5.0.1",
+    "chalk": "4.1.2",
     "open": "^8.4.0",
     "prompts": "^2.4.2",
     "tmp": "^0.2.1",
@@ -28,6 +28,7 @@
   "devDependencies": {
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.18.2",
+    "@babel/plugin-transform-modules-commonjs": "^7.18.2",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-typescript": "^7.17.12",
     "@types/node": "^17.0.39",

@@ -20,8 +20,8 @@
     "emitDeclarationOnly": true
   },
   "lib": ["es2015"],
-  "editor.codeActionsOnSave": {
-    "source.fixAll.tslint": true
-  },
+  // "editor.codeActionsOnSave": {
+  //   "source.fixAll.tslint": true
+  // },
   "include": ["src", "test", "scripts"]
 }
