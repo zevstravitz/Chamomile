@@ -24,17 +24,25 @@ export async function handler(_argv: argsT): Promise<void> {
   const organization = await me.organization;
   const teams = await organization.teams();
 
-  const issueTeamSelection = await prompts([
+  const issueTeamSelection = await prompts(
+    [
+      {
+        type: "select",
+        name: "teamId",
+        message: "Select team",
+        choices: teams.nodes.map(({ name, id }) => ({
+          title: name,
+          value: id,
+        })),
+      },
+    ],
     {
-      type: "select",
-      name: "teamId",
-      message: "Select team",
-      choices: teams.nodes.map(({ name, id }) => ({
-        title: name,
-        value: id,
-      })),
-    },
-  ]);
+      onCancel: () => {
+        console.log("Cancelled");
+        process.exit(0);
+      },
+    }
+  );
 
   const issueTeam = teams.nodes.find(
     (team) => team.id === issueTeamSelection.teamId
