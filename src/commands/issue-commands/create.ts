@@ -3,7 +3,7 @@ import open from "open";
 import prompts from "prompts";
 import yargs from "yargs";
 import { SKIP_ID } from "../../lib/constants";
-import { linearClient } from "../../lib/linear";
+import { getLinearClient } from "../../lib/linear";
 import { promptIssueDetails } from "../../lib/linear/prompt/issue_details";
 import { logLinear } from "../../lib/utils/log";
 
@@ -19,6 +19,7 @@ export const description =
 type argsT = yargs.Arguments<yargs.InferredOptionTypes<typeof args>>;
 
 export async function handler(_argv: argsT): Promise<void> {
+  const linearClient = getLinearClient();
   const me = await linearClient.viewer;
   const organization = await me.organization;
   const teams = await organization.teams();

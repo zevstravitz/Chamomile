@@ -1,8 +1,12 @@
 import { LinearClient } from "@linear/sdk";
+import { userConfigFactory } from "../config/user_config";
 
-// Api key authentication
-const linearClient = new LinearClient({
-  apiKey: "",
-});
+const getLinearClient = (): LinearClient => {
+  const userConfig = userConfigFactory.load();
+  const linearClient = new LinearClient({
+    apiKey: userConfig.data.linearAuthToken,
+  });
+  return linearClient;
+};
 
-export { linearClient };
+export { getLinearClient };

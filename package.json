@@ -20,7 +20,9 @@
   "license": "ISC",
   "dependencies": {
     "@linear/sdk": "^1.22.0",
+    "@withgraphite/retype": "^0.3.1",
     "chalk": "4.1.2",
+    "fs-extra": "^10.1.0",
     "open": "^8.4.0",
     "prompts": "^2.4.2",
     "tmp": "^0.2.1",
@@ -32,6 +34,7 @@
     "@babel/plugin-transform-modules-commonjs": "^7.18.2",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-typescript": "^7.17.12",
+    "@types/fs-extra": "^9.0.13",
     "@types/node": "^17.0.39",
     "@types/prompts": "^2.0.14",
     "@types/yargs": "^17.0.10",
