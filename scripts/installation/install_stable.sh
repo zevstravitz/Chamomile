@@ -1,3 +1,3 @@
 #!/bin/bash
 
-npm i -g charcoal-cli
+npm i -g chamomile-cli

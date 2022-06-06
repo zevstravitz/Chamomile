@@ -12,11 +12,9 @@ const args = {
 } as const;
 type argsT = yargs.Arguments<yargs.InferredOptionTypes<typeof args>>;
 
-export const USER_CONFIG_OVERRIDE_ENV = "CHARCOAL_USER_CONFIG_PATH" as const;
-
 export const command = "linear";
 export const description =
-  "Add your auth token to enable Charcoal CLI to integrate with Linear.";
+  "Add your auth token to enable Chamomile CLI to integrate with Linear.";
 export const builder = args;
 export const canonical = "Linear Auth";
 

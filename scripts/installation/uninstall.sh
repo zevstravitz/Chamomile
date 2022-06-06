@@ -1,3 +1,3 @@
 #!/bin/bash
 
-npm uninstall -g charcoal-cli
+npm uninstall -g chamomile-cli

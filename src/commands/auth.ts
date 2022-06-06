@@ -1,7 +1,7 @@
 import { Argv } from "yargs";
 
 export const command = "auth <command>";
-export const desc = "Authenticate Charcoal with a Provider";
+export const desc = "Authenticate Chamomile with a Provider";
 
 export const aliases = ["a"];
 export const builder = function (yargs: Argv): Argv {

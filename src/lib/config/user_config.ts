@@ -12,7 +12,7 @@ export const userConfigFactory = composeConfig({
   schema,
   defaultLocations: [
     {
-      relativePath: ".charcoal_user_config",
+      relativePath: ".chamomile_user_config",
       relativeTo: "USER_HOME",
     },
   ],

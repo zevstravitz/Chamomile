@@ -8,7 +8,7 @@ yargs(process.argv.slice(2))
   .help()
   .usage(
     [
-      "🧘‍♀️ Charcoal simplifies issue and git tracking from the command line.",
+      "🧘‍♀️ Chamomile simplifies issue and git tracking from the command line.",
     ].join("\n")
   )
   .strict()

@@ -41,7 +41,7 @@ class ConfigError extends ExitError {
 
 class KilledError extends ExitError {
   constructor() {
-    super(`User killed Charcoal early`);
+    super(`User killed Chamomile early`);
     this.name = "Killed";
   }
 }

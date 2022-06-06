@@ -1,7 +1,7 @@
 {
-  "name": "charcoal-cli",
+  "name": "chamomile-cli",
   "version": "1.0.0",
-  "description": "Charcoal simplifies issue and git tracking from the command line",
+  "description": "Chamomile simplifies issue and git tracking from the command line",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
@@ -51,6 +51,6 @@
   },
   "bin": {
     "cl": "./dist/src/index.js",
-    "charcoal": "./dist/src/index.js"
+    "chamomile": "./dist/src/index.js"
   }
 }
