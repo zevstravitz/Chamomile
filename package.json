@@ -1,6 +1,6 @@
 {
   "name": "chamomile-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Chamomile simplifies issue and git tracking from the command line",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
