@@ -21,7 +21,7 @@ chamomile issue create
 
 ## Getting a Linear Token
 
-Get a linear token from the Linear App under **Settings > Account > API > Personal API Keys**. Generate a key and copy it, and substitute the token with the token variable down below.
+Get a linear token from the Linear App under **Settings > Account > API > Personal API Keys**. Generate a key and copy it, and substitute the token with the token variable up above.
 
 ## Shortcuts
 
